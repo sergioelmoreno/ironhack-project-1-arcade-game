@@ -15,6 +15,8 @@ const Game = {
         down: "ArrowDown"
     },
     isKeyPressed: false,
+    isGameOver: false,
+    gameEngine: undefined,
 
     // Metodos
     init() {
@@ -25,7 +27,7 @@ const Game = {
         this.player1 = new Player(this.gameDimensions)
         this.enemy1 = new Enemy(this.gameDimensions)
         console.log("enemy 1", this.enemy1)
-
+        this.playerLives = new Lives(this.gameDimensions)
     },
 
     setSize() {
@@ -35,14 +37,19 @@ const Game = {
     },
 
     counterFrames() {
-        setInterval(() => {
-            if (this.frameCounter === 5000) {
-                this.frameCounter = 0
-            } else {
-                this.frameCounter++
-            }
-            this.updateObjects()
-        }, 20)
+        if (!this.isGameOver) {
+            this.gameEngine = setInterval(() => {
+                if (this.frameCounter === 5000) {
+                    this.frameCounter = 0
+                } else {
+                    this.frameCounter++
+                }
+                this.updateObjects()
+            }, 20)
+        } else {
+            clearInterval(this.gameEngine)
+        }
+
     },
 
     setEventsListener() {
@@ -69,11 +76,15 @@ const Game = {
         if (!this.isKeyPressed) {
             this.player1.move()
         }
+        if (this.playerLives.lives.current === 0) {
+            this.gameOver()
+        }
 
+    },
 
+    gameOver() {
+        this.isGameOver = true
+        alert("GAME OVER")
     }
-
-
-
 
 }
