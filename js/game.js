@@ -23,6 +23,9 @@ const Game = {
         this.setEventsListener()
         this.background1 = new Background(this.gameDimensions)
         this.player1 = new Player(this.gameDimensions)
+        this.enemy1 = new Enemy(this.gameDimensions)
+        console.log("enemy 1", this.enemy1)
+
     },
 
     setSize() {
@@ -62,9 +65,11 @@ const Game = {
 
     updateObjects() {
         this.background1.move()
+        this.enemy1.move()
         if (!this.isKeyPressed) {
             this.player1.move()
         }
+
 
     }
 
