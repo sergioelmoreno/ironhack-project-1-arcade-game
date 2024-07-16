@@ -41,36 +41,38 @@ class Player {
     }
 
     move(direction) {
-        if (direction) {
-            switch (direction) {
-                case "ArrowLeft":
-                    if (this.position.left >= 0) {
-                        this.position.left -= 10
-                    }
-                    break
-                case "ArrowRight":
-                    if (this.position.left <= this.gameDimensions.w - this.size.width) {
-                        this.position.left += 10
-                    }
-                    break
-                case "ArrowUp":
-                    if (this.position.top >= 0) {
-                        this.position.top -= 10
-                    }
-                    break
+        switch (direction) {
+            case "ArrowLeft":
+                if (this.position.left >= 0) {
+                    this.position.left -= 10
+                }
+                break
+            case "ArrowRight":
+                if (this.position.left <= this.gameDimensions.w - this.size.width) {
+                    this.position.left += 10
+                }
+                break
+            case "ArrowUp":
+                if (this.position.top >= 0) {
+                    this.position.top -= 10
+                }
+                break
+            case "ArrowDown":
+                if (this.position.top <= this.position.base) {
+                    this.position.top += 10
+                }
+                break
+            default: 
+                if (this.position.top < this.position.base) {
+                    this.velocity = 5
+                    this.position.top += this.velocity
+                } else {
+                    this.velocity = 0
+                    this.position.top = this.position.base
+                }
 
-            }
-        } else {
-            if (this.position.top < this.position.base) {
-                this.velocity = 5
-                this.position.top += this.velocity
-            } else {
-                this.velocity = 0
-                this.position.top = this.position.base
-            }
         }
         this.uppdateMovement()
-
     }
 
 }

@@ -7,14 +7,20 @@ const Game = {
         w: window.innerWidth,
     },
     frameCounter: 0,
-    player1: {},
+    player1: undefined,
+    background1: undefined,
+    enemy1: undefined,
+    playerLives: undefined,
     keys: {
         left: "ArrowLeft",
         right: "ArrowRight",
         up: "ArrowUp",
         down: "ArrowDown"
     },
-    isKeyPressed: false,
+    isKeyPressed: {
+        isPressed: false,
+        keyCode: ""
+    },
     isGameOver: false,
     gameEngine: undefined,
 
@@ -53,28 +59,31 @@ const Game = {
     },
 
     setEventsListener() {
+        // TO-DO: Manage simultaneous “keyPressed” Events 
+        // check this out: https://medium.com/@joshbwasserman/managing-simultaneous-keypressed-events-in-javascript-78da1b3b14de
         const handlePressed = (event) => {
-            this.isKeyPressed = true
-            if (event.code === this.keys.left || event.code === this.keys.right || event.code === this.keys.up) {
-                this.isKeyPressed = true
-                this.player1.move(event.code)
+            if (Object.values(this.keys).indexOf(event.code) > -1) {
+                this.isKeyPressed.isPressed = true
+                this.isKeyPressed.keyCode = event.code
             }
         }
         const handleReleased = (event) => {
             if (event.type === "keyup") {
-                this.isKeyPressed = false
-
+                this.isKeyPressed.isPressed = false
+                this.isKeyPressed.keyCode = ""
             }
         }
         document.addEventListener("keydown", event => handlePressed(event))
         document.addEventListener("keyup", event => handleReleased(event))
     },
 
-    updateObjects() {
+    updateObjects(keyCode) {
         this.background1.move()
         this.enemy1.move()
         if (!this.isKeyPressed) {
-            this.player1.move()
+            this.player1.move(this.isKeyPressed.isPressed)
+        } else {
+            this.player1.move(this.isKeyPressed.keyCode)
         }
         if (this.playerLives.lives.current === 0) {
             this.gameOver()
