@@ -24,6 +24,7 @@ const Game = {
         console.log("background", this.background1)
         this.player1 = new Player(this.gameDimensions)
         console.log("player 1", this.player1)
+
         this.player1.prueba()
         this.setEventsListener()
 
@@ -43,6 +44,7 @@ const Game = {
             } else {
                 this.frameCounter++
             }
+            this.background1.move()
 
             //console.log("frame", this.frameCounter)
         }, 21)

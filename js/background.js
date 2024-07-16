@@ -10,15 +10,23 @@ class Background {
 
         this.positionBackground1 = {
             top: 0,
-            left: (this.gameDimensions.w / 2) - (this.size.width / 2)
+            left: (this.gameDimensions.w / 2) - (this.size.width / 2),
+
         }
         this.positionBackground2 = {
             top: -this.size.height,
-            left: (this.gameDimensions.w / 2) - (this.size.width / 2)
+            left: (this.gameDimensions.w / 2) - (this.size.width / 2),
+
         }
+        this.velBackground = {
+            top: 10
+        }
+
 
         //invocamos metodos
         this.init()
+        this.move()
+        console.log(this.move())
 
     }
     // declaro Metodos
@@ -35,6 +43,8 @@ class Background {
         this.backgroundElement1.style.width = `${this.size.width}px`
 
 
+
+
         this.backgroundElement2.src = "./images/road.jpg"
         this.backgroundElement2.style.position = "absolute"
         this.backgroundElement2.style.top = `${this.positionBackground2.top}px`
@@ -48,13 +58,23 @@ class Background {
 
     }
 
-    updateMovement() {
-
-    }
-
     move() {
+        if (this.positionBackground1.top >= this.size.height) {
+            this.positionBackground1.top = 0
+            this.positionBackground2.top = -this.size.height
 
+        }
+        this.positionBackground1.top += this.velBackground.top
+        this.positionBackground2.top += this.velBackground.top
+        this.updateMovement()
 
     }
+
+    updateMovement() {
+        this.backgroundElement1.style.top = `${this.positionBackground1.top}px`
+        this.backgroundElement2.style.top = `${this.positionBackground2.top}px`
+    }
+
+
 
 }
