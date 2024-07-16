@@ -25,8 +25,6 @@ class Background {
 
         //invocamos metodos
         this.init()
-        this.move()
-        console.log(this.move())
 
     }
     // declaro Metodos

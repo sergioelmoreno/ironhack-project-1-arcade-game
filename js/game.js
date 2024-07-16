@@ -14,27 +14,21 @@ const Game = {
         up: "ArrowUp",
         down: "ArrowDown"
     },
+    isKeyPressed: false,
 
     // Metodos
     init() {
-        console.log("el Game ya se ha cargado con init", this.gameDimensions.w)
         this.setSize()
         this.counterFrames()
-        this.background1 = new Background(this.gameDimensions)
-        console.log("background", this.background1)
-        this.player1 = new Player(this.gameDimensions)
-        console.log("player 1", this.player1)
-
-        this.player1.prueba()
         this.setEventsListener()
-
+        this.background1 = new Background(this.gameDimensions)
+        this.player1 = new Player(this.gameDimensions)
     },
 
     setSize() {
         document.querySelector("#game-screen").style.width = this.gameDimensions.w
         document.querySelector("#game-screen").style.height = this.gameDimensions.h
         document.querySelector("#game-screen").style.background = "blue"
-        console.log("he aplicado setSize con heigth", this.gameDimensions.h)
     },
 
     counterFrames() {
@@ -44,22 +38,34 @@ const Game = {
             } else {
                 this.frameCounter++
             }
-            this.background1.move()
-
-            //console.log("frame", this.frameCounter)
-        }, 21)
-
+            this.updateObjects()
+        }, 20)
     },
 
     setEventsListener() {
-        document.addEventListener("keydown", (event) => {
-            console.log(event)
-            if (event.code === this.keys.left || event.code === this.keys.right || event.code === this.keys.up || event.code === this.keys.down) {
+        const handlePressed = (event) => {
+            this.isKeyPressed = true
+            if (event.code === this.keys.left || event.code === this.keys.right || event.code === this.keys.up) {
+                this.isKeyPressed = true
                 this.player1.move(event.code)
+            }
+        }
+        const handleReleased = (event) => {
+            if (event.type === "keyup") {
+                this.isKeyPressed = false
 
             }
+        }
+        document.addEventListener("keydown", event => handlePressed(event))
+        document.addEventListener("keyup", event => handleReleased(event))
+    },
 
-        })
+    updateObjects() {
+        this.background1.move()
+        if (!this.isKeyPressed) {
+            this.player1.move()
+        }
+
     }
 
 
