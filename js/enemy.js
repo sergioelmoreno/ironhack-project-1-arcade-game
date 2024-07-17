@@ -1,15 +1,15 @@
 class Enemy {
 
-    constructor(gameDimensions) {
+    constructor(gameDimensions, positionLeft, idx) {
         //propiedades
         this.gameDimensions = gameDimensions
-
+        this.id = `enemy-${idx}`
         this.size = {
             width: 60,
             height: 134
         }
         this.position = {
-            left: (this.gameDimensions.w / 2) - (this.size.width / 2),
+            left: positionLeft,
             top: -this.size.height,
 
         }
@@ -24,7 +24,9 @@ class Enemy {
 
         this.enemyElement = document.createElement("img")
 
-        this.enemyElement.src = "./images/enemy.png"
+        this.enemyElement.id = `${this.id}`
+        this.enemyElement.className = "enemy"
+        this.enemyElement.src = `./images/enemy-${(Math.floor(Math.random() * 3)) + 1}.png`
         this.enemyElement.style.position = "absolute"
         this.enemyElement.style.top = `${this.position.top}px`
         this.enemyElement.style.left = `${this.position.left}px`
@@ -38,9 +40,6 @@ class Enemy {
     move() {
         this.position.top += this.velocity
         this.uppdateMovements()
-        if (this.position.top >= this.gameDimensions.h) {
-            this.velocity = 0
-        }
     }
 
     uppdateMovements() {

@@ -62,13 +62,13 @@ La clase `Enemy` debe de tener las mismas propiedades que la clase `Player`, aun
 - [x] Cada corazón deberá tener 2 estados: lleno y vacío
 - [x] Crear un nuevo objeto desde `game.js` con la nueva clase que muestre 3 corazones en la parte superior izquierda de la pantalla.
 ![Lives position](./images/images-readme/lives-position.jpg)
-- [ ] Comprobar que se cambian las URLs de los corazones de `full` a `empty` cuando se modifica la propiedad `this.lives.current`
+- [x] Comprobar que se cambian las URLs de los corazones de `full` a `empty` cuando se modifica la propiedad `this.lives.current`
 
 #### 3. Crear la funcionalizad de detección de Colision 
-- [ ] Detectar la colisión entre el `Player()`y el `Enemy()`
-- [ ] Cuando se detecta, debemos restar una vida y se deberá de actualizar la imagen del corazón correspondiente
-- [ ] Cuando se hayan perdido 3 vidas se invocará el método `Game.gameOver()`, parando todo el movimiento y cereación de enemigos y mostrando un `alert()`
-- [ ] Mejoramos el estado del `gameOver()` quitando el `alert()` y mostarndo un mensaje en el DOM dentro de un modal
+- [x] Detectar la colisión entre el `Player()`y el `Enemy()`
+- [x] Cuando se detecta, debemos restar una vida y se deberá de actualizar la imagen del corazón correspondiente
+- [x] Cuando se hayan perdido 3 vidas se invocará el método `Game.gameOver()`, parando todo el movimiento y cereación de enemigos y mostrando un `alert()`
+- [x] Mejoramos el estado del `gameOver()` quitando el `alert()` y mostarndo un mensaje en el DOM dentro de un modal
 
 ## MEJORAS TRAS LOGRAR EL MVP
 

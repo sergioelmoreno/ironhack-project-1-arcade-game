@@ -1,8 +1,8 @@
 class Player {
-    constructor(gameDimensions) {
-        // Propiedades
+    constructor(gameDimensions, keysPressed) {
         this.gameDimensions = gameDimensions
-
+        this.keysPressed = keysPressed
+        this.id = "player"
         this.size = {
             width: 65,
             heigth: 117
@@ -15,15 +15,13 @@ class Player {
         }
         this.aceleration = true
         this.velocity = 0
-        //invocamos metodos
         this.init()
     }
 
-    // declaro Metodos
     init() {
 
         this.playerElement = document.createElement("img")
-
+        this.playerElement.id = `${this.id}`
         this.playerElement.src = "./images/player.png"
         this.playerElement.style.position = "absolute"
         this.playerElement.style.top = `${this.position.top}px`
@@ -62,9 +60,9 @@ class Player {
                     this.position.top += 10
                 }
                 break
-            default: 
+            default:
                 if (this.position.top < this.position.base) {
-                    this.velocity = 5
+                    this.velocity = 7
                     this.position.top += this.velocity
                 } else {
                     this.velocity = 0
@@ -72,6 +70,26 @@ class Player {
                 }
 
         }
+        // this.keysPressed.forEach(key => {
+        //     if (key["ArrowLeft"]) {
+        //         this.position.left -= 10
+        //     } else {
+        //         this.position.left -= 0
+
+        //     }
+        //     if (key["ArrowRight"]) {
+        //         this.position.left += 10
+        //     } else {
+        //         this.position.left -= 0
+
+        //     }
+        //     if (key["ArrowUp"]) {
+        //         this.position.top -= 10
+        //     }
+        //     if (key["ArrowDown"]) {
+        //         this.position.top += 10
+        //     }
+        //})
         this.uppdateMovement()
     }
 

@@ -7,16 +7,14 @@ class Background {
             height: this.gameDimensions.h,
             width: 571,
         }
-
-        this.positionBackground1 = {
-            top: 0,
+        this.position = {
             left: (this.gameDimensions.w / 2) - (this.size.width / 2),
-
+        }
+        this.positionBackground1 = {
+            top: 0
         }
         this.positionBackground2 = {
             top: -this.size.height,
-            left: (this.gameDimensions.w / 2) - (this.size.width / 2),
-
         }
         this.velBackground = {
             top: 10
@@ -36,7 +34,7 @@ class Background {
         this.backgroundElement1.src = "./images/road.jpg"
         this.backgroundElement1.style.position = "absolute"
         this.backgroundElement1.style.top = `${this.positionBackground1.top}px`
-        this.backgroundElement1.style.left = `${this.positionBackground1.left}px`
+        this.backgroundElement1.style.left = `${this.position.left}px`
         this.backgroundElement1.style.height = `${this.size.height}px`
         this.backgroundElement1.style.width = `${this.size.width}px`
 
@@ -46,7 +44,7 @@ class Background {
         this.backgroundElement2.src = "./images/road.jpg"
         this.backgroundElement2.style.position = "absolute"
         this.backgroundElement2.style.top = `${this.positionBackground2.top}px`
-        this.backgroundElement2.style.left = `${this.positionBackground2.left}px`
+        this.backgroundElement2.style.left = `${this.position.left}px`
         this.backgroundElement2.style.height = `${this.size.height}px`
         this.backgroundElement2.style.width = `${this.size.width}px`
 
@@ -57,10 +55,10 @@ class Background {
     }
 
     move() {
+        // TO-DO: fix the size of the background to 
         if (this.positionBackground1.top >= this.size.height) {
             this.positionBackground1.top = 0
             this.positionBackground2.top = -this.size.height
-
         }
         this.positionBackground1.top += this.velBackground.top
         this.positionBackground2.top += this.velBackground.top

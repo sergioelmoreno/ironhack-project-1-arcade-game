@@ -1,3 +1,10 @@
+let game = Game
 
-window.onload = () => Game.init()
-console.log("Game ya se ha cargado")
+window.onload = () => {
+  game.init()
+}
+
+document.querySelector("#replay-btn").addEventListener("click", () => {
+  document.querySelector("dialog").close()
+  location.reload()
+})
