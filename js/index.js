@@ -1,10 +1,14 @@
 let game = Game
 
 window.onload = () => {
-  game.init()
+  document.querySelector("#game-menu").showModal()
 }
 
 document.querySelector("#replay-btn").addEventListener("click", () => {
-  document.querySelector("dialog").close()
+  document.querySelector("#game-over").close()
   location.reload()
+})
+document.querySelector("#play-btn").addEventListener("click", () => {
+  document.querySelector("#game-menu").close()
+  game.init()
 })

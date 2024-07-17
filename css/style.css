@@ -9,12 +9,14 @@
             rebeccapurple,
             magenta,
             rebeccapurple);
-    opacity: 0.75;
+    opacity: 0.65;
 }
 
 body {
     background-color: #666666;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Press Start 2P", system-ui;
+    font-weight: 400;
+    font-style: normal;
 }
 
 #game-screen {
@@ -25,15 +27,21 @@ body {
 
 h1 {
     color: white;
-    text-shadow: 0 2px 2px rgba(0, 0, 0, .32);
+    text-shadow: 0 7px 0 rgba(102, 51, 153, .82);
+    margin-bottom: 1rem;
+    font-size: 3rem;
+}
+p {
+    color: white;
     margin-bottom: 1rem;
 }
 
 button {
+    font-family: "Press Start 2P", system-ui;
     font-size: 1.5rem;
     font-weight: 700;
     text-align: center;
-    box-shadow: 0 2px 2px rgba(0, 0, 0, .32);
+    box-shadow: 0 7px 0 rgba(102, 51, 153, .52);
     padding: 1rem;
     border: none;
     background-color: rebeccapurple;
@@ -44,10 +52,10 @@ button {
 dialog {
     border-radius: 10px;
     background-color: rgba(0, 0, 0, .42);
-    font-size: 2rem;
+    font-size: 1rem;
     text-align: center;
     padding: 2rem;
     border: none;
-    box-shadow: 0 2px 2px rgba(0, 0, 0, .32);
+    box-shadow: 0 0 30px 10px rgba(255, 255, 255, .52);
     z-index: 99;
 }

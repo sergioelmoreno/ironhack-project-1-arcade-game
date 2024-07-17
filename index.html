@@ -3,14 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ROAD FURY - Arcade top to down game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
-    <dialog>
+    <dialog id="game-over">
         <h1>GAME OVER!!</h1>
         <button id="replay-btn" autofocus>VOLVER A JUGAR</button>
+    </dialog>
+    <dialog id="game-menu">
+        <h1>ROAD FURY!</h1>
+        <p>INSTRUCCIONES</p>
+        <p>Esquiva los coches y obstáculos durante el mayor tiempo posible</p>
+        <button id="play-btn" autofocus>JUGAR</button>
     </dialog>
     <figure id="game-screen"></figure>
 
