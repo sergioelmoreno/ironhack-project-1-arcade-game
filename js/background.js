@@ -3,6 +3,7 @@ class Background {
     constructor(gameDimensions) {
         //Propiedades
         this.gameDimensions = gameDimensions
+
         this.size = {
             height: this.gameDimensions.h,
             width: 571,
