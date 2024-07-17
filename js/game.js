@@ -9,7 +9,8 @@ const Game = {
     frameCounter: 0,
     player1: undefined,
     background1: undefined,
-    enemy1: undefined,
+    roadside1: undefined,
+    enemies: [],
     playerLives: undefined,
     keys: {
         left: "ArrowLeft",
@@ -30,10 +31,10 @@ const Game = {
         this.counterFrames()
         this.setEventsListener()
         this.background1 = new Background(this.gameDimensions)
+        this.roadside1 = new Roadside(this.gameDimensions, this.background1.positionBackground1.left, this.background1.size.width)
         this.player1 = new Player(this.gameDimensions)
-        this.enemy1 = new Enemy(this.gameDimensions)
-        console.log("enemy 1", this.enemy1)
         this.playerLives = new Lives(this.gameDimensions)
+        this.calculateEmenyLeft()
     },
 
     setSize() {
@@ -41,7 +42,11 @@ const Game = {
         document.querySelector("#game-screen").style.height = this.gameDimensions.h
         document.querySelector("#game-screen").style.background = "blue"
     },
-
+    calculateEmenyLeft(mult) {
+        const left = this.background1.positionBackground1.left
+        const width = this.background1.size.width
+        return left + (width * mult)
+    },
     counterFrames() {
         if (!this.isGameOver) {
             this.gameEngine = setInterval(() => {
@@ -50,7 +55,21 @@ const Game = {
                 } else {
                     this.frameCounter++
                 }
+
+                if (this.frameCounter === 50) {
+                    this.enemy1 = new Enemy(this.gameDimensions, this.calculateEmenyLeft(.17))
+                    //this.enemies.push(enemy)
+                }
+                else if (this.frameCounter === 100) {
+                    this.enemy2 = new Enemy(this.gameDimensions, this.calculateEmenyLeft(.12))
+                }
+                else if (this.frameCounter === 150) {
+                    this.enemy3 = new Enemy(this.gameDimensions, this.calculateEmenyLeft(.55))
+                }
+
                 this.updateObjects()
+
+
             }, 20)
         } else {
             clearInterval(this.gameEngine)
@@ -78,8 +97,21 @@ const Game = {
     },
 
     updateObjects(keyCode) {
+        this.roadside1.move()
         this.background1.move()
-        this.enemy1.move()
+
+        if (this.enemy1) {
+            this.enemy1.move()
+
+        }
+        if (this.enemy2) {
+            this.enemy2.move()
+
+        }
+        if (this.enemy3) {
+            this.enemy3.move()
+        }
+
         if (!this.isKeyPressed) {
             this.player1.move(this.isKeyPressed.isPressed)
         } else {

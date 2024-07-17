@@ -1,6 +1,6 @@
 class Enemy {
 
-    constructor(gameDimensions) {
+    constructor(gameDimensions, positionLeft) {
         //propiedades
         this.gameDimensions = gameDimensions
 
@@ -9,9 +9,10 @@ class Enemy {
             height: 134
         }
         this.position = {
-            left: (this.gameDimensions.w / 2) - (this.size.width / 2),
+            left: positionLeft,
             top: -this.size.height,
-
+            //-this.size.height,
+            //(this.gameDimensions.w / 2)
         }
         this.velocity = 5
 
