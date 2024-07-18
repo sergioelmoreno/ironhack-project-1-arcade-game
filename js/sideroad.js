@@ -92,7 +92,6 @@ class Roadside {
       this.positionRightRoad2.top = -this.size.height
       this.positionLeftRoad2.top = -this.size.height
     }
-
     this.positionLeftRoad1.top += this.velLeftRoad.top
     this.positionLeftRoad2.top += this.velLeftRoad.top
     this.positionRightRoad1.top += this.velLeftRoad.top

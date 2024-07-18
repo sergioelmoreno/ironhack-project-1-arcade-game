@@ -45,9 +45,9 @@ La clase `Enemy` debe de tener las mismas propiedades que la clase `Player`, aun
 ![Enemy position](./images/images-readme/enemy-position.jpg)
 - [x] Añadir movimiento continuo de `5px` al `Enemy()`desde el borde superior al borde inferior
 - [x] Detectar cuando sale de la pantalla por el borde inferior y detener el movimiento justo cuando ha desaparecido.
-- [ ] Añadir 3 `Enemy()` en total dentro de del ciclo de frames establecido (de `0` a `5000` frames). Establecer cuando van a aparecer en función de los frames que se lleven acumulados.
+- [x] Añadir 3 `Enemy()` en total dentro de del ciclo de frames establecido (de `0` a `5000` frames). Establecer cuando van a aparecer en función de los frames que se lleven acumulados.
 - [ ] Debemos guardar de alguna manera cada nuevo `Enemy()` para poder gestionar más adelante su borrado tanto dentro de `Game` como en el DOM.
-- [ ] La posición inicial de cada `Enemy()` debe de estar comprendida **entre el border izquierdo y el borde derecho de la carretera**. Aparecerá, como se ha realizado en el punto anterior, desde fuera del borde superior del `#game-screen` y se desplazará verticalmente de manera continua hasta desaparecer por el borde inferior (igual que en los puntos anteriores).
+- [x] La posición inicial de cada `Enemy()` debe de estar comprendida **entre el border izquierdo y el borde derecho de la carretera**. Aparecerá, como se ha realizado en el punto anterior, desde fuera del borde superior del `#game-screen` y se desplazará verticalmente de manera continua hasta desaparecer por el borde inferior (igual que en los puntos anteriores).
 - [ ] Cuando el `Enemy()` salga por el border inferior y se haya detenido su movimiento debemmos eliminarlo del DOM
 - [ ] Cuando el `Enemy()` salga por el border inferior y se haya detenido su movimiento debemmos eliminar su instancia dentro del script de `Game` para economizar memoria
 

@@ -32,7 +32,6 @@ class Enemy {
     this.enemyElement.style.height = `${this.size.height}px`
 
     document.querySelector("#game-screen").appendChild(this.enemyElement)
-
   }
 
   move() {

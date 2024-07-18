@@ -28,6 +28,7 @@ const Game = {
 
   init() {
 
+
     this.setSize()
     this.setCounterFrames()
     this.setEventsListener()
@@ -53,12 +54,16 @@ const Game = {
 
         if (this.frameCounter === 5000) {
           this.frameCounter = 0
+
         } else {
           this.frameCounter++
         }
 
         if (this.frameCounter % 50 === 1) {
           this.createNewEnemy()
+        }
+        if (this.playerLives.lives.current === 0) {
+            this.gameOver()
         }
 
         this.updatePoints()
