@@ -11,8 +11,7 @@ class Enemy {
         this.position = {
             left: positionLeft,
             top: -this.size.height,
-            //-this.size.height,
-            //(this.gameDimensions.w / 2)
+
         }
         this.velocity = 5
 
@@ -39,9 +38,7 @@ class Enemy {
     move() {
         this.position.top += this.velocity
         this.uppdateMovements()
-        if (this.position.top >= this.gameDimensions.h) {
-            this.velocity = 0
-        }
+
     }
 
     uppdateMovements() {

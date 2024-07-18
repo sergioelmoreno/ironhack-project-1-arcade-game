@@ -42,9 +42,10 @@ const Game = {
         document.querySelector("#game-screen").style.height = this.gameDimensions.h
         document.querySelector("#game-screen").style.background = "blue"
     },
-    calculateEmenyLeft(mult) {
+    calculateEmenyLeft() {
         const left = this.background1.positionBackground1.left
         const width = this.background1.size.width
+        let mult = Math.random()
         return left + (width * mult)
     },
     counterFrames() {
@@ -55,17 +56,26 @@ const Game = {
                 } else {
                     this.frameCounter++
                 }
+                if (this.frameCounter % 100 === 0) {
+                    console.log(this.frameCounter)
+                    this.enemy = new Enemy(this.gameDimensions, this.calculateEmenyLeft())
+                    this.enemies.push(this.enemy)
+                    console.log(this.enemies)
+                }
 
-                if (this.frameCounter === 50) {
+
+                /*if (this.frameCounter === 50) {
                     this.enemy1 = new Enemy(this.gameDimensions, this.calculateEmenyLeft(.17))
-                    //this.enemies.push(enemy)
+                    this.enemies.push(this.enemy1)
                 }
                 else if (this.frameCounter === 100) {
                     this.enemy2 = new Enemy(this.gameDimensions, this.calculateEmenyLeft(.12))
+                    this.enemies.push(this.enemy2)
                 }
                 else if (this.frameCounter === 150) {
                     this.enemy3 = new Enemy(this.gameDimensions, this.calculateEmenyLeft(.55))
-                }
+                    this.enemies.push(this.enemy3)
+                }*/
 
                 this.updateObjects()
 
@@ -74,6 +84,8 @@ const Game = {
         } else {
             clearInterval(this.gameEngine)
         }
+
+        console.log(this.enemies)
 
     },
 
@@ -100,17 +112,16 @@ const Game = {
         this.roadside1.move()
         this.background1.move()
 
-        if (this.enemy1) {
-            this.enemy1.move()
+        this.enemies.forEach((enemy, index) => {
+            enemy.move()
 
-        }
-        if (this.enemy2) {
-            this.enemy2.move()
+            if (enemy.position.top >= this.gameDimensions.h) {
+                this.enemies.splice(enemy[index], 1)
+                enemy.enemyElement.remove()
 
-        }
-        if (this.enemy3) {
-            this.enemy3.move()
-        }
+            }
+
+        })
 
         if (!this.isKeyPressed) {
             this.player1.move(this.isKeyPressed.isPressed)
