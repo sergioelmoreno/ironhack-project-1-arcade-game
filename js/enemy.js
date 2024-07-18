@@ -15,16 +15,26 @@ class Enemy {
         }
         this.velocity = 5
 
+        this.allImages = [1, 2, 3]
+
         //invocamos metodos
         this.init()
+        this.setImages()
+
 
     }
+
+    setImages() {
+
+        return this.allImages[Math.floor(Math.random() * this.allImages.length)]
+
+    }
+
 
     init() {
 
         this.enemyElement = document.createElement("img")
-
-        this.enemyElement.src = "./images/enemy.png"
+        this.enemyElement.src = `./images/enemy-${this.setImages()}.png`
         this.enemyElement.style.position = "absolute"
         this.enemyElement.style.top = `${this.position.top}px`
         this.enemyElement.style.left = `${this.position.left}px`
