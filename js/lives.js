@@ -37,10 +37,14 @@ class Lives {
     this.updateLives()
   }
   updateLives() {
-    for (let i = 0; i < this.lives.current; i++) {
 
-      this.livesArray[i].src = this.lives.full
-    }
+    this.livesArray.forEach((live, idx) => {
+      if (idx < this.lives.current) {
+        live.src = this.lives.full
+      } else {
+        live.src = this.lives.empty
+      }
 
+    })
   }
 }

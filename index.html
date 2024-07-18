@@ -3,13 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+
+  <title>ROAD FURY - Arcade Top-Down game</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
-  <figure id="game-screen"></figure>
 
+  <dialog id="game-over">
+    <h1>GAME OVER!</h1>
+    <p>POINTS: <span class="game-over-points"></span></p>
+    <button id="replay-btn" autofocus>VOLVER A JUGAR</button>
+  </dialog>
+  <dialog id="game-menu">
+    <h1>ROAD FURY!</h1>
+    <h2>INSTRUCCIONES</h2>
+    <div class="grid">
+      <div class="col">
+        <p>Esquiva los coches durante el mayor tiempo posible sin perder todas las vidas. </p>
+      </div>
+      <div class="col">
+        <p>CONTROLES</p>
+        <p><img src="./images/arrow-keys.png" alt="Arroy keys" class="menu-img"></p>
+      </div>
+    </div>
+    <p>
+      <button id="play-btn" autofocus>JUGAR</button>
+    </p>
+    <hr>
+    <p class="small">Creado durante el curso de <strong>Full-stack Developer en Ironhack</strong> por:</p>
+    <p class="small"><a href="https://github.com/A73XANDRA" target="_blank">Alex Morel</a></p>
+    <p class="small"><a href="https://github.com/sergioelmoreno" target="_blank">Sergio Elmoreno</a></p>
+  </dialog>
+  <div class="points-container" style="opacity: 0">POINTS: <span class="points"></span></div>
+  <figure id="game-screen"></figure>
 
   <script src="./js/lives.js"></script>
   <script src="./js/sideroad.js"></script>

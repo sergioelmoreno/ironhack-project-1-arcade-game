@@ -1,58 +1,50 @@
 class Enemy {
 
-    constructor(gameDimensions, positionLeft) {
-        //propiedades
-        this.gameDimensions = gameDimensions
+  constructor(gameDimensions, positionLeft, idx) {
 
-        this.size = {
-            width: 60,
-            height: 134
-        }
-        this.position = {
-            left: positionLeft,
-            top: -this.size.height,
-
-        }
-        this.velocity = 5
-
-        this.allImages = [1, 2, 3]
-
-        //invocamos metodos
-        this.init()
-        this.setImages()
-
-
+    this.gameDimensions = gameDimensions
+    this.id = `enemy-${idx}`
+    this.size = {
+      width: 60,
+      height: 134
     }
-
-    setImages() {
-
-        return this.allImages[Math.floor(Math.random() * this.allImages.length)]
-
+    this.position = {
+      left: positionLeft,
+      top: -this.size.height,
     }
+    this.speed = 5
 
+    this.init()
 
-    init() {
+  }
 
-        this.enemyElement = document.createElement("img")
-        this.enemyElement.src = `./images/enemy-${this.setImages()}.png`
-        this.enemyElement.style.position = "absolute"
-        this.enemyElement.style.top = `${this.position.top}px`
-        this.enemyElement.style.left = `${this.position.left}px`
-        this.enemyElement.style.width = `${this.size.width}px`
-        this.enemyElement.style.height = `${this.size.height}px`
+  init() {
 
-        document.querySelector("#game-screen").appendChild(this.enemyElement)
+    this.enemyElement = document.createElement("img")
 
-    }
+    this.enemyElement.id = `${this.id}`
+    this.enemyElement.className = "enemy"
+    this.enemyElement.src = `./images/enemy-${(Math.floor(Math.random() * 3)) + 1}.png`
+    this.enemyElement.style.position = "absolute"
+    this.enemyElement.style.top = `${this.position.top}px`
+    this.enemyElement.style.left = `${this.position.left}px`
+    this.enemyElement.style.width = `${this.size.width}px`
+    this.enemyElement.style.height = `${this.size.height}px`
 
-    move() {
-        this.position.top += this.velocity
-        this.uppdateMovements()
+    document.querySelector("#game-screen").appendChild(this.enemyElement)
+  }
 
-    }
+  move() {
 
-    uppdateMovements() {
-        this.enemyElement.style.top = `${this.position.top}px`
-    }
+    this.position.top += this.speed
+    this.uppdateMovements()
+
+  }
+
+  uppdateMovements() {
+
+    this.enemyElement.style.top = `${this.position.top}px`
+
+  }
 
 }
