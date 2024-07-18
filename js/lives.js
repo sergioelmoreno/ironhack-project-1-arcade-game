@@ -1,4 +1,5 @@
 class Lives {
+
   constructor(gameDimensions) {
     this.gameDimensions = gameDimensions
     this.size = {
@@ -17,13 +18,16 @@ class Lives {
     this.livesArray = []
 
     this.init()
+
   }
 
   init() {
+
     this.live1 = document.createElement("img")
     this.live2 = document.createElement("img")
     this.live3 = document.createElement("img")
     this.livesArray.push(this.live1, this.live2, this.live3)
+
     this.livesArray.forEach((live, idx) => {
       live.style.position = "absolute"
       live.style.top = `${this.position.top}px`
@@ -33,9 +37,13 @@ class Lives {
       live.id = `live-${idx}`
       document.querySelector("#game-screen").appendChild(live)
     })
+
     this.updateLives()
+
   }
+
   updateLives() {
+
     this.livesArray.forEach((live, idx) => {
       if (idx < this.lives.current) {
         live.src = this.lives.full
@@ -45,4 +53,5 @@ class Lives {
     })
 
   }
+
 }
