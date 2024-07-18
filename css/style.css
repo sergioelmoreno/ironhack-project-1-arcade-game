@@ -26,10 +26,21 @@ h1 {
     font-size: 3rem;
 }
 
+h2 {
+    color: magenta;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, .82);
+    margin-bottom: 1rem;
+}
+
 p {
     color: white;
-    text-shadow: 0 3px 0 rgba(102, 51, 153, .82);
+    text-shadow: 0 2px 0 rgba(102, 51, 153, .82);
     margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+strong {
+    font-weight: 900;
 }
 
 button {
@@ -45,6 +56,42 @@ button {
     border-radius: 10px;
 }
 
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.col {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.small {
+    font-size: .7rem;
+    text-shadow: none;
+}
+
+a {
+    text-decoration: none;
+    color: white
+}
+
+hr {
+    border-color: magenta;
+    margin-block: 1rem;
+
+}
+
+a:visited,
+a:active {
+    color: white;
+}
+
+a:hover {
+    color: magenta;
+}
+
 dialog {
     border-radius: 10px;
     background-color: rgba(0, 0, 0, .42);
@@ -54,7 +101,7 @@ dialog {
     border: none;
     box-shadow: 0 0 30px 10px rgba(255, 255, 255, .52);
     z-index: 99;
-    max-width: min(90%, 50rem);
+    max-width: min(80%, 42rem);
 }
 
 #game-screen {

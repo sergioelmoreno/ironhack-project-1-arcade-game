@@ -76,33 +76,8 @@ class Player {
       }
     }
 
-    // this.keysPressed.forEach(key => {
-    //     if (key["ArrowLeft"]) {
-    //         this.position.left -= 10
-    //     } else {
-    //         this.position.left -= 0
-
-    //     }
-    //     if (key["ArrowRight"]) {
-    //         this.position.left += 10
-    //     } else {
-    //         this.position.left -= 0
-
-    //     }
-    //     if (key["ArrowUp"]) {
-    //         this.position.top -= 10
-    //     }
-    //     if (key["ArrowDown"]) {
-    //         this.position.top += 10
-    //     }
-    //})
-
     this.uppdateMovement()
 
   }
 
 }
-
-
-
-

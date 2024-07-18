@@ -12,24 +12,29 @@
 
 <body>
   <dialog id="game-over">
-    <h1>GAME OVER!!</h1>
+    <h1>GAME OVER!</h1>
     <p>POINTS: <span class="game-over-points"></span></p>
     <button id="replay-btn" autofocus>VOLVER A JUGAR</button>
   </dialog>
   <dialog id="game-menu">
     <h1>ROAD FURY!</h1>
-    <p>INSTRUCCIONES</p>
-    <div class="flexbox">
+    <h2>INSTRUCCIONES</h2>
+    <div class="grid">
       <div class="col">
-        <p>Esquiva los coches y obstáculos durante el mayor tiempo posible</p>
+        <p>Esquiva los coches durante el mayor tiempo posible sin perder todas las vidas. </p>
       </div>
       <div class="col">
         <p>CONTROLES</p>
         <p><img src="./images/arrow-keys.png" alt="Arroy keys" class="menu-img"></p>
-
       </div>
     </div>
-    <button id="play-btn" autofocus>JUGAR</button>
+    <p>
+      <button id="play-btn" autofocus>JUGAR</button>
+    </p>
+    <hr>
+    <p class="small">Creado durante el curso de <strong>Full-stack Developer en Ironhack</strong> por:</p>
+    <p class="small"><a href="https://github.com/A73XANDRA" target="_blank">Alex Morel</a></p>
+    <p class="small"><a href="https://github.com/sergioelmoreno" target="_blank">Sergio Elmoreno</a></p>
   </dialog>
   <div class="points-container" style="opacity: 0">POINTS: <span class="points"></span></div>
   <figure id="game-screen"></figure>
