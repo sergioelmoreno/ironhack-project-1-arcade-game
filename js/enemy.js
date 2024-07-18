@@ -12,7 +12,7 @@ class Enemy {
       left: positionLeft,
       top: -this.size.height,
     }
-    this.velocity = 5
+    this.speed = 5
 
     this.init()
 
@@ -37,7 +37,7 @@ class Enemy {
 
   move() {
 
-    this.position.top += this.velocity
+    this.position.top += this.speed
     this.uppdateMovements()
 
   }

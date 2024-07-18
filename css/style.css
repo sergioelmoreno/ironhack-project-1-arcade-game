@@ -54,7 +54,7 @@ dialog {
     border: none;
     box-shadow: 0 0 30px 10px rgba(255, 255, 255, .52);
     z-index: 99;
-    max-width: 50rem;
+    max-width: min(90%, 50rem);
 }
 
 #game-screen {

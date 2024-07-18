@@ -3,9 +3,10 @@ class Background {
   constructor(gameDimensions) {
 
     this.gameDimensions = gameDimensions
+    this.aspectRatio = 650 / 571
     this.size = {
       height: this.gameDimensions.h,
-      width: 571,
+      width: this.gameDimensions.h * this.aspectRatio,
     }
     this.position = {
       left: (this.gameDimensions.w / 2) - (this.size.width / 2),
@@ -49,7 +50,7 @@ class Background {
   }
 
   move() {
-    // TO-DO: fix the size of the background to 
+
     if (this.positionBackground1.top >= this.size.height) {
       this.positionBackground1.top = 0
       this.positionBackground2.top = -this.size.height

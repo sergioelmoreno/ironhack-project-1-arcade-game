@@ -18,24 +18,18 @@ const Game = {
     up: "ArrowUp",
     down: "ArrowDown"
   },
-  isCollisionActive: true,
-  isKeyPressed: {
-    isPressed: false,
+  collisionActive: true,
+  keysPressed: {
+    pressed: false,
     keyCode: ""
   },
-  keysPressed: [
-    { "ArrowLeft": false },
-    { "ArrowRight": false },
-    { "ArrowUp": false },
-    { "ArrowDown": false },
-  ],
-  isGameOver: false,
+  gameOver: false,
   gameEngine: undefined,
 
   init() {
 
     this.setSize()
-    this.counterFrames()
+    this.setCounterFrames()
     this.setEventsListener()
     this.roadBackground = new Background(this.gameDimensions)
     this.roadsideBackground = new Roadside(this.gameDimensions, this.roadBackground.position.left, this.roadBackground.size.width)
@@ -51,9 +45,9 @@ const Game = {
 
   },
 
-  counterFrames() {
+  setCounterFrames() {
 
-    if (!this.isGameOver) {
+    if (!this.gameOver) {
 
       this.gameEngine = setInterval(() => {
 
@@ -64,10 +58,6 @@ const Game = {
         }
 
         if (this.frameCounter % 50 === 1) {
-          // TO-DO: Generate new enemies randomly
-          // let random = Math.floor(Math.random() * 3)
-          // if (random === 0 || random === 2 && this.enemies.length <= 3) {
-          // }
           this.createNewEnemy()
         }
 
@@ -80,6 +70,7 @@ const Game = {
     }
 
   },
+
   updateObjects() {
 
     this.roadBackground.move()
@@ -87,15 +78,10 @@ const Game = {
     this.enemies.forEach(enemy => {
       enemy.move()
     })
-
-    if (!this.isKeyPressed) {
-      this.player.move(this.isKeyPressed.isPressed)
-    } else {
-      this.player.move(this.isKeyPressed.keyCode)
-    }
+    this.player.move(this.keysPressed)
 
     if (this.playerLives.lives.current === 0) {
-      this.gameOver()
+      this.runGameOver()
     }
 
   },
@@ -105,7 +91,7 @@ const Game = {
     this.points++
     this.pointsCounterElement = document.querySelector(".points-container")
     this.pointsGameOverelement = document.querySelector(".game-over-points")
-    this.pointsCounterElement.style.opacity = this.isGameOver ? "0" : "1"
+    this.pointsCounterElement.style.opacity = this.gameOver ? "0" : "1"
     this.pointsCounterElement.querySelector("span.points").innerHTML = `${this.points.toString().padStart(5, '0')}`
     this.pointsGameOverelement.innerHTML = `${this.points.toString().padStart(5, '0')}`
 
@@ -113,21 +99,18 @@ const Game = {
 
   setEventsListener() {
 
-    // TO-DO: Manage simultaneous “keyPressed” Events 
-    // check this out: https://medium.com/@joshbwasserman/managing-simultaneous-keypressed-events-in-javascript-78da1b3b14de
     const handlePressed = (event) => {
-      if (Object.values(this.keys).indexOf(event.code) > -1) {
-        this.isKeyPressed.isPressed = true
-        this.isKeyPressed.keyCode = event.code
-        this.keysPressed[event.code] = true
+      if (Object.values(this.keys).includes(event.code)) {
+        this.keysPressed.pressed = true
+        this.keysPressed.keyCode = event.code
+
       }
     }
 
     const handleReleased = (event) => {
       if (event.type === "keyup") {
-        this.isKeyPressed.isPressed = false
-        this.isKeyPressed.keyCode = ""
-        this.keysPressed[event.code] = false
+        this.keysPressed.pressed = false
+        this.keysPressed.keyCode = ""
       }
     }
 
@@ -144,7 +127,7 @@ const Game = {
 
       const enemyRect = enemy.enemyElement.getBoundingClientRect();
 
-      if (this.isCollisionActive) {
+      if (this.collisionActive) {
 
         if (
           enemyRect.x < playerRect.x + playerRect.width &&
@@ -152,14 +135,12 @@ const Game = {
           enemyRect.y < playerRect.y + playerRect.height &&
           enemyRect.y + enemyRect.height > playerRect.y
         ) {
-          this.playerLives.lives.current--
-          this.playerLives.updateLives()
-          this.isCollisionActive = false
+
           this.managePlayerCollision()
           this.destroyEnemy(enemy)
 
           if (this.playerLives.lives.current === 0) {
-            this.gameOver()
+            this.runGameOver()
           }
 
         }
@@ -172,14 +153,18 @@ const Game = {
 
   managePlayerCollision() {
 
-    if (!this.isCollisionActive) {
+    this.collisionActive = false
+    this.playerLives.lives.current--
+    this.playerLives.updateLives()
+
+    if (!this.collisionActive) {
 
       const blink = setInterval(() => {
         this.player.playerElement.style.filter = this.player.playerElement.style.filter === "none" ? "hue-rotate(300deg) brightness(1.75)" : "none"
       }, 40)
 
       setTimeout(() => {
-        this.isCollisionActive = true
+        this.collisionActive = true
         clearInterval(blink)
         this.player.playerElement.style.filter = "none"
       }, 1500)
@@ -231,9 +216,9 @@ const Game = {
 
   },
 
-  gameOver() {
+  runGameOver() {
 
-    this.isGameOver = true
+    this.gameOver = true
     clearInterval(this.gameEngine)
     this.enemies = []
     document.querySelectorAll(".enemy").forEach(elem => elem.remove())

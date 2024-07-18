@@ -14,9 +14,7 @@ class Player {
       base: this.gameDimensions.h - this.size.heigth - 20,
 
     }
-    this.aceleration = true
-    this.velocity = 0
-
+    this.speed = 10
     this.init()
 
   }
@@ -43,38 +41,39 @@ class Player {
 
   }
 
-  move(direction) {
+  move(keysPressed) {
 
-    switch (direction) {
-      case "ArrowLeft":
-        if (this.position.left >= 0) {
-          this.position.left -= 10
-        }
-        break
-      case "ArrowRight":
-        if (this.position.left <= this.gameDimensions.w - this.size.width) {
-          this.position.left += 10
-        }
-        break
-      case "ArrowUp":
-        if (this.position.top >= 0) {
-          this.position.top -= 10
-        }
-        break
-      case "ArrowDown":
-        if (this.position.top <= this.position.base) {
-          this.position.top += 10
-        }
-        break
-      default:
-        if (this.position.top < this.position.base) {
-          this.velocity = 7
-          this.position.top += this.velocity
-        } else {
-          this.velocity = 0
-          this.position.top = this.position.base
-        }
+    if (Object.values(keysPressed).includes(true)) {
 
+      switch (keysPressed.keyCode) {
+        case "ArrowLeft":
+          if (this.position.left >= 0) {
+            this.position.left -= this.speed
+          }
+          break
+        case "ArrowRight":
+          if (this.position.left <= this.gameDimensions.w - this.size.width) {
+            this.position.left += this.speed
+          }
+          break
+        case "ArrowUp":
+          if (this.position.top >= 0) {
+            this.position.top -= this.speed
+          }
+          break
+        case "ArrowDown":
+          if (this.position.top <= this.position.base) {
+            this.position.top += this.speed * 2
+          }
+          break
+      }
+
+    } else {
+      if (this.position.top < this.position.base) {
+        this.position.top += this.speed / 2
+      } else {
+        this.position.top = this.position.base
+      }
     }
 
     // this.keysPressed.forEach(key => {

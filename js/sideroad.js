@@ -5,9 +5,10 @@ class Roadside {
     this.gameDimensions = gameDimensions
     this.backgroundLeftPosition = backgroundLeftPosition
     this.backgroundWidthPosition = backgroundWidthPosition
+    this.aspecRatio = 108 / 650
     this.size = {
       height: this.gameDimensions.h,
-      width: 108
+      width: this.gameDimensions.h * this.aspecRatio
     }
 
     this.positionRightRoad1 = {
@@ -85,7 +86,7 @@ class Roadside {
 
   move() {
 
-    if (this.positionLeftRoad1.top >= this.size.height && this.positionRightRoad1.top >= this.size.height) {
+    if (this.positionLeftRoad1.top >= this.size.height) {
       this.positionRightRoad1.top = 0
       this.positionLeftRoad1.top = 0
       this.positionRightRoad2.top = -this.size.height

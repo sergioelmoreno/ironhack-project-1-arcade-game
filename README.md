@@ -67,8 +67,8 @@ La clase `Enemy` debe de tener las mismas propiedades que la clase `Player`, aun
 #### 3. Crear la funcionalizad de detección de Colision 
 - [x] Detectar la colisión entre el `Player()`y el `Enemy()`
 - [x] Cuando se detecta, debemos restar una vida y se deberá de actualizar la imagen del corazón correspondiente
-- [x] Cuando se hayan perdido 3 vidas se invocará el método `Game.gameOver()`, parando todo el movimiento y cereación de enemigos y mostrando un `alert()`
-- [x] Mejoramos el estado del `gameOver()` quitando el `alert()` y mostarndo un mensaje en el DOM dentro de un modal
+- [x] Cuando se hayan perdido 3 vidas se invocará el método `Game.runGameOver()`, parando todo el movimiento y cereación de enemigos y mostrando un `alert()`
+- [x] Mejoramos el estado del `runGameOver()` quitando el `alert()` y mostarndo un mensaje en el DOM dentro de un modal
 
 ## MEJORAS TRAS LOGRAR EL MVP
 
