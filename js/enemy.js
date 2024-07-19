@@ -1,6 +1,6 @@
 class Enemy {
 
-  constructor(gameDimensions, positionLeft, idx) {
+  constructor(gameDimensions, positionLeft, idx, roadWidth) {
 
     this.gameDimensions = gameDimensions
     this.id = `enemy-${idx}`
@@ -9,17 +9,16 @@ class Enemy {
       height: 134
     }
     this.position = {
-      left: positionLeft,
+      left: positionLeft >= roadWidth ? positionLeft = positionLeft - this.size.width : positionLeft,
       top: -this.size.height,
     }
-    this.speed = 5
+    this.speed = Math.floor(Math.random() * 5) + 5
 
     this.init()
 
   }
 
   init() {
-
     this.enemyElement = document.createElement("img")
 
     this.enemyElement.id = `${this.id}`

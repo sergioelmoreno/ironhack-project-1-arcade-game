@@ -63,7 +63,7 @@ const Game = {
           this.createNewEnemy()
         }
         if (this.playerLives.lives.current === 0) {
-            this.gameOver()
+          this.gameOver()
         }
 
         this.updatePoints()
@@ -185,7 +185,7 @@ const Game = {
       return (this.roadBackground.position.left + this.roadBackground.size.width * random)
     }
 
-    const enemy = new Enemy(this.gameDimensions, leftPos(), this.enemies.length + 1)
+    const enemy = new Enemy(this.gameDimensions, leftPos(), this.enemies.length + 1, this.roadBackground.size.width)
     this.enemies.push(enemy)
 
   },
